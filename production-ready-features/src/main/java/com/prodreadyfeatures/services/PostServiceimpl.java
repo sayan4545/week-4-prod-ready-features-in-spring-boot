@@ -2,6 +2,7 @@ package com.prodreadyfeatures.services;
 
 import com.prodreadyfeatures.dtos.PostDTO;
 import com.prodreadyfeatures.entities.PostEntity;
+import com.prodreadyfeatures.exceptions.ResourceNotFoundException;
 import com.prodreadyfeatures.repositories.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -28,5 +29,12 @@ public class PostServiceimpl implements PostService{
     public PostDTO createNewPost(PostDTO newInputPostDto) {
         PostEntity postEntity = modelMapper.map(newInputPostDto,PostEntity.class);
         return modelMapper.map(postRepository.save(postEntity),PostDTO.class);
+    }
+
+    @Override
+    public PostDTO findPostById(Long id) {
+        PostEntity postEntity = postRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Not found" + id));
+        return modelMapper.map(postEntity,PostDTO.class);
+
     }
 }
