@@ -13,19 +13,26 @@ import java.util.List;
 public class EmployeeClientImpl implements EmployeeClient {
 
     private final RestClient restClient;
-    @Override
-    public List<EmployeeDTO> getAllEmployees() {
-        ApiResponse<List<EmployeeDTO>> empl =
-                restClient.get()
-                .uri("getAllEmpl")
-                .retrieve()
-                .body(new ParameterizedTypeReference<>() {
-                });
-        return empl.getData();
+        @Override
+        public List<EmployeeDTO> getAllEmployees() {
+            try {
+                ApiResponse<List<EmployeeDTO>> empl =
+                        restClient.get()
+                                .uri("employees")
+                                .retrieve()
+                                .body(new ParameterizedTypeReference<>() {
+                                });
+                return empl.getData();
+            } catch (RuntimeException e) {
+                throw new RuntimeException(e);
+            }
 
 
 
 
 
-    }
+        }
+
+
+
 }

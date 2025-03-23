@@ -15,7 +15,7 @@ public class RestClientConfig {
     @Qualifier("EmplService")
     RestClient getEmployeeServiceRestClient(){
         return RestClient.builder()
-                .baseUrl("http://localhost:9000/")
+                .baseUrl("http://localhost:9000")
                 .defaultHeader(CONTENT_TYPE,APPLICATION_JSON_VALUE)
                 .build();
     }
