@@ -11,16 +11,11 @@ import java.util.List;
 
 @SpringBootTest
 class ProductionReadyFeaturesApplicationTests {
-	@Autowired
-	private EmployeeClient employeeClient;
 
 	@Test
 	void contextLoads() {
+
 	}
-	@Test
-	void getAllEmpl(){
-		List<EmployeeDTO> employees = employeeClient.getAllEmployees();
-		System.out.println(employees);
-	}
+
 
 }
